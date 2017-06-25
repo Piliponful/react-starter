@@ -12,6 +12,7 @@
     "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
+    "freactal": "^1.1.0",
     "html-webpack-plugin": "^2.29.0",
     "install": "^0.10.1",
     "npm": "^5.0.3",
