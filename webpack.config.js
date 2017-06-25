@@ -1,11 +1,24 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const webpack = require('webpack');
 
 const srcDir = path.resolve(__dirname, 'src');
 
 module.exports = {
-  entry: `${srcDir}/index.jsx`,
+  entry: [
+    'react-hot-loader/patch',
+
+    'webpack-dev-server/client?http://localhost:3000',
+    // bundle the client for webpack-dev-server
+    // and connect to the provided endpoint
+
+    'webpack/hot/only-dev-server',
+    // bundle the client for hot reloading
+    // only- means to only hot reload for successful updates
+
+    `${srcDir}/index.js`,
+  ],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -30,8 +43,13 @@ module.exports = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin({ template: 'src/index.html' }), new DashboardPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
+    new DashboardPlugin(),
+    new webpack.HotModuleReplacementPlugin({}),
+  ],
   devServer: {
     historyApiFallback: true,
+    hot: true,
   },
 };
