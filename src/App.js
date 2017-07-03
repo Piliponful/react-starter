@@ -1,7 +1,7 @@
 import React from 'react';
 import { provideState, injectState } from 'freactal';
 
-const stateTemplate = provideState({
+export const stateTemplate = provideState({
   initialState: () => ({ version: '2', text: '' }),
   effects: {
     upgrade: () => state => ({ ...state, version: state.text }),
@@ -9,19 +9,15 @@ const stateTemplate = provideState({
   },
 });
 
-export default stateTemplate(injectState(({
-  state: {
-    version,
-    text,
-  },
-  effects: {
-    upgrade,
-    setText,
-  },
+export const App = ({
+  state,
+  effects
 }) => (
   <div>
-    <h1>React Webpack {version} starter</h1>
-    <button onClick={upgrade}>Upgrade</button>
-    <input value={text} onChange={e => setText(e.target.value)} />
+    <h1>React Webpack {state.version} starter</h1>
+    <button onClick={effects.upgrade}>Upgrade</button>
+    <input value={state.text} onChange={e => effects.setText(e.target.value)} />
   </div>
-)));
+);
+
+export default stateTemplate(injectState(App));
