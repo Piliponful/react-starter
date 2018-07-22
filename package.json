@@ -1,0 +1,51 @@
+{
+  "name": "react-starter",
+  "version": "1.0.0",
+  "description": "react starter for complex and long living projects. It's main focus is readablitiy, logical reasoning and maintainability",
+  "main": "index.js",
+  "author": "piliponful",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1",
+    "classnames": "^2.2.5",
+    "config": "^1.30.0",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.4",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "install": "^0.11.0",
+    "npm": "^6.1.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-hot-loader": "^4.2.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.16.0",
+    "resolve-url-loader": "^2.3.0",
+    "rupture": "^0.7.1",
+    "standard": "^11.0.1",
+    "standard-loader": "^6.0.1",
+    "style-loader": "^0.21.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.config.dev.js",
+    "build": "webpack-cli --config webpack.config.prod.js",
+    "dev": "",
+    "prod": ""
+  },
+  "standard": {
+    "globals": [
+      "CONFIG"
+    ]
+  }
+}
