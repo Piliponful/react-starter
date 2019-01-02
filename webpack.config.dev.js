@@ -81,10 +81,10 @@ module.exports = {
     rules
   },
   plugins: [
-    new HtmlWebpackPlugin({template: 'src/assets/index.html'}),
-    new CopyWebpackPlugin([
-      { from: 'src/assets/images/favicon.ico', to: distDir }
-    ]),
+    new HtmlWebpackPlugin({template: 'src/index.html'}),
+    // new CopyWebpackPlugin([
+    //   { from: 'src/assets/images/favicon.ico', to: distDir }
+    // ]),
     new webpack.DefinePlugin({
       'CONFIG': JSON.stringify(config)
     }),

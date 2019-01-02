@@ -1,17 +1,18 @@
-import { SET_VALUE } from '../actions/types'
+import { SET_ADDITION_RESULT } from '../actions/types'
 
 const initialState = {
-  value: []
+  result: null
 }
 
 export default (state = initialState, action = {}) => {
   const { type, payload = {} } = action
-  const { value } = payload
+  const { result } = payload
 
   const typeToFunc = {
-    [SET_VALUE]: () => ({ ...state, value })
+    [SET_ADDITION_RESULT]: () => ({ ...state, result })
   }
 
+  // default action handler just returns state unmodified
   const actionHandler = typeToFunc[type] || (() => state)
   return actionHandler()
 }

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import exampleReducer from './example'
+import additionReducer from './addition'
 
 const reducer = combineReducers({
-  exampleReducer
+  additionReducer
 })
 
 export default reducer
