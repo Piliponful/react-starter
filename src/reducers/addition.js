@@ -1,4 +1,4 @@
-import { SET_ADDITION_RESULT } from '../actions/types'
+import { REQUEST_ADD_TWO_NUMBERS } from '../request/types'
 
 const initialState = {
   result: null
@@ -9,7 +9,7 @@ export default (state = initialState, action = {}) => {
   const { result } = payload
 
   const typeToFunc = {
-    [SET_ADDITION_RESULT]: () => ({ ...state, result })
+    [REQUEST_ADD_TWO_NUMBERS]: () => ({ ...state, result })
   }
 
   // default action handler just returns state unmodified
