@@ -14,7 +14,7 @@ export default () => {
 
   useEffect(() => {
     dispatchGetMessages()
-  })
+  }, [])
 
   return <ul>{messages.map(message => <li key={message.id}>{message.content}</li>)}</ul>
 }
