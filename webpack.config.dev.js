@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 const config = require('config')
 
@@ -53,6 +53,7 @@ const rules = [
 
 module.exports = {
   entry: [
+    'react-hot-loader/patch',
     `${srcDir}/index.js`
   ],
   output: {
@@ -72,8 +73,8 @@ module.exports = {
     disableHostCheck: true,
     port: 8081,
     proxy: {
-      '/api': {
-        target: 'http://nginx'
+      '*': {
+        target: 'http://localhost:8080'
       }
     }
   },
@@ -81,7 +82,7 @@ module.exports = {
     rules
   },
   plugins: [
-    new HtmlWebpackPlugin({template: 'src/index.html'}),
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
     // new CopyWebpackPlugin([
     //   { from: 'src/assets/images/favicon.ico', to: distDir }
     // ]),

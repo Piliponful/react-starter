@@ -1,13 +1,14 @@
 const initialState = {
-  result: null
+  messages: []
 }
 
 export default (state = initialState, action = {}) => {
   const { type, payload = {} } = action
-  const { result } = payload
+  const { message, messages } = payload
 
   const typeToFunc = {
-    'saveUserResult': () => ({ ...state, result })
+    'saveMessageResult': () => ({ ...state, messages: [...state.messages, message] }),
+    'getMessagesResult': () => ({ ...state, messages })
   }
 
   // default action handler just returns state unmodified
