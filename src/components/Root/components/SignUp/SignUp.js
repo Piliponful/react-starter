@@ -17,9 +17,7 @@ export default () => {
 
   const { username, password, phoneNumber, verificationCode, showVerification } = state
 
-  const [jwt, setJwt] = useLocalStorage('jwt') // eslint-disable-line
-
-  console.log(jwt)
+  const [jwt, setJwt] = useLocalStorage('jwt')
 
   const dispatch = useDispatch()
 
@@ -30,7 +28,7 @@ export default () => {
 
     e.preventDefault()
 
-    const jwtFromCreateUser = await dispatch({
+    const { jwt } = await dispatch({
       type: 'SRPC_CALL',
       payload: {
         functionName: 'createUser',
@@ -38,9 +36,7 @@ export default () => {
       }
     })
 
-    console.log(jwtFromCreateUser)
-
-    setJwt(jwtFromCreateUser)
+    setJwt(jwt)
     setState({ ...state, showVerification: true })
   }
 
