@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 
-import messagesReducer from './messages'
-import userReducer from './user'
+import messages from './messages'
+import components from './components'
 
 const reducer = combineReducers({
-  messagesReducer,
-  userReducer
+  messages,
+  components
 })
 
 export default reducer

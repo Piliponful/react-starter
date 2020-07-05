@@ -1,17 +1,15 @@
-const initialState = {
-  messages: []
-}
+const initialState = []
 
 export default (state = initialState, action = {}) => {
-  const { type, payload = {} } = action
-  const { message, messages } = payload
+  const { type: functionName, payload: returnValue = {} } = action
+  const { message, messages } = returnValue
 
-  const typeToFunc = {
-    'saveMessageResult': () => ({ ...state, messages: [...state.messages, message] }),
-    'getMessagesResult': () => ({ ...state, messages })
+  const updateStateByFunctionName = {
+    saveMessageResult: () => ([...state, message]),
+    getMessagesResult: () => messages
   }
 
   // default action handler just returns state unmodified
-  const actionHandler = typeToFunc[type] || (() => state)
+  const actionHandler = updateStateByFunctionName[functionName] || (() => state)
   return actionHandler()
 }

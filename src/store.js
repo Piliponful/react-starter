@@ -3,7 +3,7 @@ import createSrpcMiddleware from 'redux-srpc'
 
 import reducer from './reducers'
 
-const srpcMiddleware = createSrpcMiddleware('/')
+const srpcMiddleware = createSrpcMiddleware('/api')
 
 // Redux DevTools setup
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

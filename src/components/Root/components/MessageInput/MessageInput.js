@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default () => {
+  const hideMessageInput = useSelector(state => state.components.hideMessageInput)
+
   const [state, setState] = useState('')
   const dispatch = useDispatch()
   const dispatchSaveMessage = content => dispatch({
@@ -17,6 +19,10 @@ export default () => {
       e.preventDefault()
       dispatchSaveMessage(e.target.value)
     }
+  }
+
+  if (hideMessageInput) {
+    return null
   }
 
   return <textarea

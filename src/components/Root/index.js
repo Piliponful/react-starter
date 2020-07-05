@@ -8,4 +8,10 @@ import MessageInput from './components/MessageInput'
 import MessageList from './components/MessageList'
 import SignUp from './components/SignUp'
 
-export default hot(() => <Provider store={store}><MessageList /><MessageInput /><SignUp /></Provider>)
+export default hot(() => (
+  <Provider store={store}>
+    <MessageList />
+    <MessageInput />
+    <SignUp />
+  </Provider>
+))
