@@ -1,5 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux'
-import createSrpcMiddleware from 'redux-srpc'
+import { createSrpcMiddleware } from 'redux-srpc'
 
 import reducer from './reducers'
 

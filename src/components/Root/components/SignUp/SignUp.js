@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
 import useLocalStorage from 'local-storage-hook'
 
-import { HIDE_SIGNUP } from '../../../../actionTypes'
+import { HIDE_SIGNUP } from '../../../../actions/components'
+import { CREATE_USER, VERIFY_USER } from '../../../../srpcFunctionNames'
 
 export default () => {
   const hideComponent = useSelector(state => state.components.hideSignUp)
@@ -20,6 +22,7 @@ export default () => {
   const [jwt, setJwt] = useLocalStorage('jwt')
 
   const dispatch = useDispatch()
+  const dispatchSrpcCall = createDispatchSrpcCall(dispatch)
 
   const createUser = async e => {
     if (e.keyCode !== 13 || e.shiftKey) {
@@ -28,13 +31,7 @@ export default () => {
 
     e.preventDefault()
 
-    const { jwt } = await dispatch({
-      type: 'SRPC_CALL',
-      payload: {
-        functionName: 'createUser',
-        functionArguments: { username, password, phoneNumber }
-      }
-    })
+    const { jwt } = await dispatchSrpcCall(CREATE_USER, { username, password, phoneNumber })
 
     setJwt(jwt)
     setState({ ...state, showVerification: true })
@@ -47,13 +44,7 @@ export default () => {
 
     e.preventDefault()
 
-    await dispatch({
-      type: 'SRPC_CALL',
-      payload: {
-        functionName: 'verifyUser',
-        functionArguments: { jwt, verificationCode }
-      }
-    })
+    await dispatchSrpcCall(VERIFY_USER, { jwt, verificationCode })
 
     dispatch({ type: HIDE_SIGNUP, payload: true })
   }

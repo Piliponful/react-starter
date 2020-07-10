@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
+
+import { GET_MESSAGES } from '../../../../srpcFunctionNames'
 
 export default () => {
   const hideMessageList = useSelector(state => state.components.hideMessageList)
@@ -7,12 +10,8 @@ export default () => {
   const messages = useSelector(state => state.messages)
 
   const dispatch = useDispatch()
-  const dispatchGetMessages = () => dispatch({
-    type: 'SRPC_CALL',
-    payload: {
-      functionName: 'getMessages'
-    }
-  })
+  const dispatchSrpcCall = createDispatchSrpcCall(dispatch)
+  const dispatchGetMessages = () => dispatchSrpcCall(GET_MESSAGES)
 
   useEffect(() => {
     dispatchGetMessages()

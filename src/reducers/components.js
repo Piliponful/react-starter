@@ -1,4 +1,4 @@
-import { HIDE_SIGNUP, HIDE_MESSAGE_INPUT, HIDE_MESSAGE_LIST } from '../actionTypes'
+import { HIDE_SIGNUP, HIDE_MESSAGE_INPUT, HIDE_MESSAGE_LIST } from '../actions/components'
 
 const initialState = {
   hideSignUp: false,
@@ -15,7 +15,6 @@ export default (state = initialState, action = {}) => {
     [HIDE_MESSAGE_LIST]: () => ({ ...state, hideMessageList: payload })
   }
 
-  // default action handler just returns state unmodified
   const actionHandler = updateStateByFunctionName[type] || (() => state)
   return actionHandler()
 }

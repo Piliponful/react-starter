@@ -1,3 +1,5 @@
+import { SAVE_MESSAGE, GET_MESSAGES } from '../srpcFunctionNames'
+
 const initialState = []
 
 export default (state = initialState, action = {}) => {
@@ -5,11 +7,10 @@ export default (state = initialState, action = {}) => {
   const { message, messages } = returnValue
 
   const updateStateByFunctionName = {
-    saveMessageResult: () => ([...state, message]),
-    getMessagesResult: () => messages
+    [`${SAVE_MESSAGE}Result`]: () => ([...state, message]),
+    [`${GET_MESSAGES}Result`]: () => messages
   }
 
-  // default action handler just returns state unmodified
   const actionHandler = updateStateByFunctionName[functionName] || (() => state)
   return actionHandler()
 }
