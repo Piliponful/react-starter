@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
 import useLocalStorage from 'local-storage-hook'
 
-import { HIDE_SIGNUP } from '../../../../actions/components'
+import { HIDE_SIGNUP, HIDE_MESSAGE_LIST, HIDE_MESSAGE_INPUT } from '../../../../actions/components'
 import { CREATE_USER, VERIFY_USER } from '../../../../srpcFunctionNames'
 
 export default () => {
@@ -47,6 +47,8 @@ export default () => {
     await dispatchSrpcCall(VERIFY_USER, { jwt, verificationCode })
 
     dispatch({ type: HIDE_SIGNUP, payload: true })
+    dispatch({ type: HIDE_MESSAGE_LIST, payload: false })
+    dispatch({ type: HIDE_MESSAGE_INPUT, payload: false })
   }
 
   const setField = e => setState({ ...state, [e.target.name]: e.target.value })
