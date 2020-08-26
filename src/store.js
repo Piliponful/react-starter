@@ -1,16 +1,14 @@
-import { createStore, compose, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { createSrpcMiddleware } from 'redux-srpc'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 import reducer from './reducers'
 
 const srpcMiddleware = createSrpcMiddleware('/api')
 
-// Redux DevTools setup
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
 const store = createStore(
   reducer,
-  composeEnhancers(applyMiddleware(srpcMiddleware))
+  composeWithDevTools(applyMiddleware(srpcMiddleware))
 )
 
 export default store
