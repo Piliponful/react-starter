@@ -1,4 +1,5 @@
 import { HIDE_SIGNUP, HIDE_MESSAGE_INPUT, HIDE_MESSAGE_LIST } from '../actions/components'
+import { INITIALIZATION } from '../actions/misc'
 
 const initialState = {
   hideSignUp: false,
@@ -12,7 +13,11 @@ export default (state = initialState, action = {}) => {
   const updateStateByFunctionName = {
     [HIDE_SIGNUP]: () => ({ ...state, hideSignUp: payload }),
     [HIDE_MESSAGE_INPUT]: () => ({ ...state, hideMessageInput: payload }),
-    [HIDE_MESSAGE_LIST]: () => ({ ...state, hideMessageList: payload })
+    [HIDE_MESSAGE_LIST]: () => ({ ...state, hideMessageList: payload }),
+    [INITIALIZATION]: () => {
+      const isJWTPresent = Boolean(payload.jwt)
+      return ({ ...state, hideSignUp: isJWTPresent, hideMessageInput: !isJWTPresent, hideMessageList: !isJWTPresent })
+    }
   }
 
   const actionHandler = updateStateByFunctionName[type] || (() => state)
