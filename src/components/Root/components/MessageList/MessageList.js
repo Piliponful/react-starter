@@ -5,8 +5,6 @@ import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
 import { GET_MESSAGES } from '../../../../srpcFunctionNames'
 
 export default () => {
-  const hideMessageList = useSelector(state => state.components.hideMessageList)
-
   const messages = useSelector(state => state.messages)
 
   const dispatch = useDispatch()
@@ -16,6 +14,8 @@ export default () => {
   useEffect(() => {
     dispatchGetMessages()
   }, [])
+
+  const hideMessageList = useSelector(state => state.components.hideMessageList)
 
   if (hideMessageList) {
     return null

@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
-import useLocalStorage from 'local-storage-hook'
+import { useLocalStorage } from '@rehooks/local-storage'
 
 import { HIDE_SIGNUP, HIDE_MESSAGE_LIST, HIDE_MESSAGE_INPUT } from '../../../../actions/components'
 import { CREATE_USER, VERIFY_USER } from '../../../../srpcFunctionNames'
 
 export default () => {
-  const hideComponent = useSelector(state => state.components.hideSignUp)
-
   const [state, setState] = useState({
     username: '',
     password: '',
@@ -17,11 +15,18 @@ export default () => {
     showVerification: false
   })
 
-  const { username, password, phoneNumber, verificationCode, showVerification } = state
-
   const [jwt, setJwt] = useLocalStorage('jwt')
 
   const dispatch = useDispatch()
+
+  const hideComponent = useSelector(state => state.components.hideSignUp)
+
+  if (hideComponent) {
+    return null
+  }
+
+  const { username, password, phoneNumber, verificationCode, showVerification } = state
+
   const dispatchSrpcCall = createDispatchSrpcCall(dispatch)
 
   const createUser = async e => {
@@ -52,10 +57,6 @@ export default () => {
   }
 
   const setField = e => setState({ ...state, [e.target.name]: e.target.value })
-
-  if (hideComponent) {
-    return null
-  }
 
   return (
     <div>
