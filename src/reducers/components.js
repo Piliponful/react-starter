@@ -4,7 +4,8 @@ import { INITIALIZATION } from '../actions/misc'
 const initialState = {
   hideSignUp: false,
   hideMessageInput: true,
-  hideMessageList: true
+  hideMessageList: true,
+  hideGroupList: true
 }
 
 export default (state = initialState, action = {}) => {
@@ -16,7 +17,13 @@ export default (state = initialState, action = {}) => {
     [HIDE_MESSAGE_LIST]: () => ({ ...state, hideMessageList: payload }),
     [INITIALIZATION]: () => {
       const isJWTPresent = Boolean(payload.jwt)
-      return ({ ...state, hideSignUp: isJWTPresent, hideMessageInput: !isJWTPresent, hideMessageList: !isJWTPresent })
+
+      return ({
+        hideSignUp: isJWTPresent,
+        hideMessageInput: !isJWTPresent,
+        hideMessageList: !isJWTPresent,
+        hideGroupList: !isJWTPresent
+      })
     }
   }
 

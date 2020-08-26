@@ -6,10 +6,12 @@ import store from '../../store'
 
 import MessageInput from './components/MessageInput'
 import MessageList from './components/MessageList'
+import GroupList from './components/GroupList'
 import SignUp from './components/SignUp'
 
 export default hot(() => (
   <Provider store={store}>
+    <GroupList />
     <MessageList />
     <MessageInput />
     <SignUp />
