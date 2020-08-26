@@ -9,5 +9,6 @@ export default ({
   <li>
     {message.content}
     <BinaryResponse messageId={message.id} selectedResponse={selectedResponse} />
+    {selectedResponse ? `Your response: ${selectedResponse}` : null}
   </li>
 )

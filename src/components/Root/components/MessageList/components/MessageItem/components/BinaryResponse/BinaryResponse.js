@@ -15,7 +15,7 @@ export default ({ messageId, selectedResponse }) => {
   const dispatchSaveMessage = content => dispatchSrpcCall(SAVE_MESSAGE, { jwt, content, parentMessageId: messageId })
 
   return <span>
-    <button onClick={() => dispatchSaveMessage('Yes')} disabled={selectedResponse === 'Yes'}>Yes</button>
-    <button onClick={() => dispatchSaveMessage('No')} disabled={selectedResponse === 'No'}>No</button>
+    <button onClick={() => dispatchSaveMessage('Yes')} disabled={selectedResponse}>Yes</button>
+    <button onClick={() => dispatchSaveMessage('No')} disabled={selectedResponse}>No</button>
   </span>
 }
