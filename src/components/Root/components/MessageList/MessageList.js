@@ -23,5 +23,18 @@ export default () => {
     return null
   }
 
-  return <ul>{messages.filter(i => !i.parentMessageId).map(message => <MessageItem key={message.id} message={message} />)}</ul>
+  return (
+    <ul>
+      {
+        messages
+          .filter(i => !i.parentMessageId)
+          .map(message => {
+            const response = messages.find(i => i.parentMessageId === message.id)
+            const responseContent = response ? response.content : null
+
+            return <MessageItem key={message.id} message={message} selectedResponse={responseContent} />
+          })
+      }
+    </ul>
+  )
 }

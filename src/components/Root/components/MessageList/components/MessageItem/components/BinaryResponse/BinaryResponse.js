@@ -5,7 +5,7 @@ import { useLocalStorage } from '@rehooks/local-storage'
 
 import { SAVE_MESSAGE } from '../../../../../../../../srpcFunctionNames'
 
-export default ({ messageId }) => {
+export default ({ messageId, selectedResponse }) => {
   const [jwt] = useLocalStorage('jwt')
 
   const dispatch = useDispatch()
@@ -15,7 +15,7 @@ export default ({ messageId }) => {
   const dispatchSaveMessage = content => dispatchSrpcCall(SAVE_MESSAGE, { jwt, content, parentMessageId: messageId })
 
   return <span>
-    <button onClick={() => dispatchSaveMessage('Yes')}>Yes</button>
-    <button onClick={() => dispatchSaveMessage('No')}>No</button>
+    <button onClick={() => dispatchSaveMessage('Yes')} disabled={selectedResponse === 'Yes'}>Yes</button>
+    <button onClick={() => dispatchSaveMessage('No')} disabled={selectedResponse === 'No'}>No</button>
   </span>
 }
