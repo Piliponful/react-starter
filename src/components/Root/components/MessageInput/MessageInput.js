@@ -26,6 +26,7 @@ export default () => {
     if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault()
       dispatchSaveMessage(e.target.value)
+      setState('')
     }
   }
 
