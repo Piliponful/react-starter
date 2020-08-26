@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
 
+import MessageItem from './components/MessageItem'
+
 import { GET_MESSAGES } from '../../../../srpcFunctionNames'
 
 export default () => {
@@ -21,5 +23,5 @@ export default () => {
     return null
   }
 
-  return <ul>{messages.map(message => <li key={message.id}>{message.content}</li>)}</ul>
+  return <ul>{messages.filter(i => !i.parentMessageId).map(message => <MessageItem key={message.id} message={message} />)}</ul>
 }
