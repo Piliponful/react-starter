@@ -2,7 +2,7 @@ import React from 'react'
 
 import BinaryResponse from './components/BinaryResponse'
 
-export default ({
+export const MessageItem = ({
   message,
   selectedResponse
 }) => (

@@ -1,3 +1,3 @@
-import GroupCreationButtons from './GroupCreationButtons'
+import { GroupCreationButtons } from './GroupCreationButtons'
 
 export default GroupCreationButtons

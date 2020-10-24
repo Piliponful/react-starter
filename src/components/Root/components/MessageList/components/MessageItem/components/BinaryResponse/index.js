@@ -1,3 +1,3 @@
-import BinaryResponse from './BinaryResponse'
+import { BinaryResponse } from './BinaryResponse'
 
 export default BinaryResponse

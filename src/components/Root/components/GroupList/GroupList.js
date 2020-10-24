@@ -4,7 +4,7 @@ import { useLocalStorage } from '@rehooks/local-storage'
 
 import { GET_GROUPS } from '../../../../srpcFunctionNames'
 
-export default () => {
+export const GroupList = () => {
   const [groups, setGroups] = useState([])
 
   const [jwt] = useLocalStorage('jwt')

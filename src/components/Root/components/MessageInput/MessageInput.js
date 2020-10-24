@@ -5,7 +5,7 @@ import { useLocalStorage } from '@rehooks/local-storage'
 
 import { SAVE_MESSAGE } from '../../../../srpcFunctionNames'
 
-export default () => {
+export const MessageInput = () => {
   const hideMessageInput = useSelector(state => state.components.hideMessageInput)
 
   const [state, setState] = useState('')

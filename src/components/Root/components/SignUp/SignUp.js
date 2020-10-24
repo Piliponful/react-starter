@@ -6,7 +6,7 @@ import { useLocalStorage } from '@rehooks/local-storage'
 import { HIDE_SIGNUP, HIDE_MESSAGE_LIST, HIDE_MESSAGE_INPUT } from '../../../../actions/components'
 import { CREATE_USER, VERIFY_USER } from '../../../../srpcFunctionNames'
 
-export default () => {
+export const SignUp = () => {
   const [state, setState] = useState({
     username: '',
     password: '',

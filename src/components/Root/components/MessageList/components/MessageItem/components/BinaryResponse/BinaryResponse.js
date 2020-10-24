@@ -5,7 +5,7 @@ import { useLocalStorage } from '@rehooks/local-storage'
 
 import { SAVE_MESSAGE } from '../../../../../../../../srpcFunctionNames'
 
-export default ({ messageId, selectedResponse }) => {
+export const BinaryResponse = ({ messageId, selectedResponse }) => {
   const [jwt] = useLocalStorage('jwt')
 
   const dispatch = useDispatch()

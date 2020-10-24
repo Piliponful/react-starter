@@ -6,7 +6,7 @@ import { useLocalStorage } from '@rehooks/local-storage'
 
 import { CREATE_GROUP } from '../../../../../../srpcFunctionNames'
 
-export default ({ messageId }) => {
+export const GroupCreationButtons = ({ messageId }) => {
   const [jwt] = useLocalStorage('jwt')
 
   const dispatch = useDispatch()

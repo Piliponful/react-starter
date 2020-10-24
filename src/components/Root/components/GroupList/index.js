@@ -1,3 +1,3 @@
-import GroupList from './GroupList'
+import { GroupList } from './GroupList'
 
 export default GroupList

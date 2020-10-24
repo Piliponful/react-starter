@@ -7,7 +7,7 @@ import GroupCreationButtons from './components/GroupCreationButtons'
 
 import { GET_MESSAGES } from '../../../../srpcFunctionNames'
 
-export default () => {
+export const MessageList = () => {
   const messages = useSelector(state => state.messages)
 
   const dispatch = useDispatch()
