@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 const config = require('config')
@@ -12,7 +13,14 @@ const rules = [
     test: /\.jsx?$/,
     exclude: /node_modules/,
     enforce: 'pre',
-    use: ['babel-loader', {
+    use: [{
+      loader: 'babel-loader',
+      options: {
+        plugins: [
+          'react-refresh/babel'
+        ]
+      }
+    }, {
       loader: 'standard-loader',
       options: {
         snazzy: true,
@@ -52,10 +60,7 @@ const rules = [
 ]
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    `${srcDir}/index.js`
-  ],
+  entry: `${srcDir}/index.js`,
   output: {
     path: distDir,
     filename: 'bundle.js',
@@ -64,11 +69,11 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   devServer: {
+    hot: true,
     watchOptions: {
       poll: true
     },
     historyApiFallback: true,
-    hot: true,
     host: '0.0.0.0',
     disableHostCheck: true,
     port: 8081,
@@ -89,6 +94,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'CONFIG': JSON.stringify(config)
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new ReactRefreshWebpackPlugin()
   ]
 }
