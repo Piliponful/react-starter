@@ -40,10 +40,10 @@ export const MessageList = () => {
             const responseContent = response ? response.content : null
 
             return (
-              <>
+              <React.Fragment key={message.id}>
                 <MessageItem key={message.id} message={message} selectedResponse={responseContent} />
                 <GroupCreationButtons messageId={message.id} />
-              </>
+              </React.Fragment>
             )
           })
       }
