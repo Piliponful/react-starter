@@ -41,7 +41,7 @@ export const MessageList = () => {
 
             return (
               <React.Fragment key={message.id}>
-                <MessageItem key={message.id} message={message} selectedResponse={responseContent} />
+                <MessageItem message={message} selectedResponse={responseContent} />
                 <GroupCreationButtons messageId={message.id} />
               </React.Fragment>
             )
