@@ -45,7 +45,7 @@ const GroupList = () => {
       groups.map(group => (
         <span key={group.id}>
           {group.name}
-          <button onClick={() => setSelectedGroup(group.id)}>Filter By This Group</button>
+          <button onClick={() => setSelectedGroup(group.id)}>{group.selected ? 'Unselect' : 'Select'}</button>
         </span>
       ))
     }
