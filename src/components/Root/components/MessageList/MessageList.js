@@ -13,15 +13,15 @@ import { GET_MESSAGES } from '../../../../srpcFunctionNames'
 const MessageList = () => {
   const messages = useSelector(state => state.messages)
 
+  const [jwt] = useLocalStorage('jwt')
+
   const dispatch = useDispatch()
   const dispatchSrpcCall = createDispatchSrpcCall(dispatch)
-  const dispatchGetMessages = () => dispatchSrpcCall(GET_MESSAGES)
+  const dispatchGetMessages = () => dispatchSrpcCall(GET_MESSAGES, { jwt })
 
   useEffect(() => {
     dispatchGetMessages()
   }, [])
-
-  const [jwt] = useLocalStorage('jwt')
 
   const { userId } = decodeJwt(jwt)
 

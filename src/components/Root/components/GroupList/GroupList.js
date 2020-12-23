@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { useLocalStorage } from '@rehooks/local-storage'
 
 import HideHOC from '../../../HideHOC'
 
-import { GET_GROUPS, GET_MESSAGES } from '../../../../srpcFunctionNames'
+import { GET_GROUPS, SET_SELECTED_GROUP } from '../../../../srpcFunctionNames'
 
 const GroupList = () => {
   const [groups, setGroups] = useState([])
-  const [selectedGroupId, setSelectedGroupId] = useState(null)
-
-  const dispatch = useDispatch()
 
   const [jwt] = useLocalStorage('jwt')
 
@@ -30,10 +26,10 @@ const GroupList = () => {
       })
   }, [])
 
-  useEffect(() => {
+  const setSelectedGroup = groupId => {
     window.fetch(CONFIG.apiUrl, {
       method: 'post',
-      body: JSON.stringify({ method: GET_MESSAGES, params: { jwt, groupId: selectedGroupId } }),
+      body: JSON.stringify({ method: SET_SELECTED_GROUP, params: { jwt, groupId } }),
       headers: { 'Content-Type': 'application/json' }
     })
       .then(response => response.json())
@@ -41,17 +37,15 @@ const GroupList = () => {
         if (result.error) {
           throw new Error(result.error)
         }
-
-        dispatch({ type: `${GET_MESSAGES}Result`, payload: { messages: result.messages } })
       })
-  }, [selectedGroupId])
+  }
 
   return <ul>
     {
       groups.map(group => (
         <span key={group.id}>
           {group.name}
-          <button onClick={() => setSelectedGroupId(group.id)}>Filter By This Group</button>
+          <button onClick={() => setSelectedGroup(group.id)}>Filter By This Group</button>
         </span>
       ))
     }
