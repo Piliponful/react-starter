@@ -6,7 +6,7 @@ import HideHOC from '../../../HideHOC'
 
 import { GET_GROUPS, GET_MESSAGES } from '../../../../srpcFunctionNames'
 
-export const GroupList = () => {
+const GroupList = () => {
   const [groups, setGroups] = useState([])
   const [selectedGroupId, setSelectedGroupId] = useState(null)
 
