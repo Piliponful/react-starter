@@ -6,10 +6,11 @@ import decodeJwt from 'jwt-decode'
 
 import MessageItem from './components/MessageItem'
 import GroupCreationButtons from './components/GroupCreationButtons'
+import HideHOC from '../../../HideHOC'
 
 import { GET_MESSAGES } from '../../../../srpcFunctionNames'
 
-export const MessageList = () => {
+const MessageList = () => {
   const messages = useSelector(state => state.messages)
 
   const dispatch = useDispatch()
@@ -19,12 +20,6 @@ export const MessageList = () => {
   useEffect(() => {
     dispatchGetMessages()
   }, [])
-
-  const hideMessageList = useSelector(state => state.components.hideMessageList)
-
-  if (hideMessageList) {
-    return null
-  }
 
   const [jwt] = useLocalStorage('jwt')
 
@@ -50,3 +45,5 @@ export const MessageList = () => {
     </ul>
   )
 }
+
+export default HideHOC('hideMessageList')(MessageList)

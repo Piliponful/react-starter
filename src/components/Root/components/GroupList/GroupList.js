@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLocalStorage } from '@rehooks/local-storage'
 
+import HideHOC from '../../../HideHOC'
+
 import { GET_GROUPS, GET_MESSAGES } from '../../../../srpcFunctionNames'
 
 export const GroupList = () => {
@@ -55,3 +57,5 @@ export const GroupList = () => {
     }
   </ul>
 }
+
+export default HideHOC('hideGroupList')(GroupList)
