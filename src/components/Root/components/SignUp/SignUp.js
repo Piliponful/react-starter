@@ -68,4 +68,4 @@ export const SignUp = () => {
   )
 }
 
-export default HideHOC('hideMessageInput')(SignUp)
+export default HideHOC('hideSignUp')(SignUp)
