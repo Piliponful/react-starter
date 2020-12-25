@@ -1,3 +1,3 @@
-import { MessageInput } from './MessageInput'
+import MessageInput from './MessageInput'
 
 export default MessageInput

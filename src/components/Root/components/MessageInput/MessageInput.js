@@ -1,22 +1,18 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
 import { useLocalStorage } from '@rehooks/local-storage'
+
+import HideHOC from '../../../HideHOC'
 
 import { SAVE_MESSAGE } from '../../../../srpcFunctionNames'
 
 export const MessageInput = () => {
-  const hideMessageInput = useSelector(state => state.components.hideMessageInput)
-
   const [state, setState] = useState('')
 
   const [jwt] = useLocalStorage('jwt')
 
   const dispatch = useDispatch()
-
-  if (hideMessageInput) {
-    return null
-  }
 
   const dispatchSrpcCall = createDispatchSrpcCall(dispatch)
 
@@ -39,3 +35,5 @@ export const MessageInput = () => {
     cols='33'
   />
 }
+
+export default HideHOC('hideMessageInput')(MessageInput)

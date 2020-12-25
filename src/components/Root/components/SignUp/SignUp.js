@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
 import { useLocalStorage } from '@rehooks/local-storage'
+
+import HideHOC from '../../../HideHOC'
 
 import { HIDE_SIGNUP, HIDE_MESSAGE_LIST, HIDE_MESSAGE_INPUT } from '../../../../actions/components'
 import { CREATE_USER, VERIFY_USER } from '../../../../srpcFunctionNames'
@@ -18,12 +20,6 @@ export const SignUp = () => {
   const [jwt, setJwt] = useLocalStorage('jwt')
 
   const dispatch = useDispatch()
-
-  const hideComponent = useSelector(state => state.components.hideSignUp)
-
-  if (hideComponent) {
-    return null
-  }
 
   const { username, password, phoneNumber, verificationCode, showVerification } = state
 
@@ -71,3 +67,5 @@ export const SignUp = () => {
     </div>
   )
 }
+
+export default HideHOC('hideMessageInput')(SignUp)
