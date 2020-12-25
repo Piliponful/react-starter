@@ -1,44 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useLocalStorage } from '@rehooks/local-storage'
+import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
 
 import HideHOC from '../../../HideHOC'
 
 import { GET_GROUPS, SET_SELECTED_GROUP } from '../../../../srpcFunctionNames'
 
 const GroupList = () => {
-  const [groups, setGroups] = useState([])
+  const groups = useSelector(state => state.groups)
 
   const [jwt] = useLocalStorage('jwt')
 
+  const dispatch = useDispatch()
+  const dispatchSrpcCall = createDispatchSrpcCall(dispatch)
+  const getGroups = () => dispatchSrpcCall(GET_GROUPS, { jwt })
+  const setSelectedGroup = groupId => dispatchSrpcCall(SET_SELECTED_GROUP, { jwt, groupId })
+
   useEffect(() => {
-    window.fetch(CONFIG.apiUrl, {
-      method: 'post',
-      body: JSON.stringify({ method: GET_GROUPS, params: { jwt } }),
-      headers: { 'Content-Type': 'application/json' }
-    })
-      .then(response => response.json())
-      .then(result => {
-        if (result.error) {
-          throw new Error(result.error)
-        }
-
-        setGroups(result.groups)
-      })
+    getGroups()
   }, [])
-
-  const setSelectedGroup = groupId => {
-    window.fetch(CONFIG.apiUrl, {
-      method: 'post',
-      body: JSON.stringify({ method: SET_SELECTED_GROUP, params: { jwt, groupId } }),
-      headers: { 'Content-Type': 'application/json' }
-    })
-      .then(response => response.json())
-      .then(result => {
-        if (result.error) {
-          throw new Error(result.error)
-        }
-      })
-  }
 
   return <ul>
     {

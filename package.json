@@ -54,5 +54,8 @@
     "webpack": "^5.2.0",
     "webpack-cli": "^4.1.0",
     "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "find-and-replace-array": "^1.0.1"
   }
 }
