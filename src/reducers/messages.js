@@ -7,7 +7,7 @@ export default (state = initialState, action = {}) => {
   const { message, messages } = returnValue
 
   const updateStateByFunctionName = {
-    [`${SAVE_MESSAGE}Result`]: () => ([...state, message]),
+    [`${SAVE_MESSAGE}Result`]: () => ([...state, message.parentMessageId ? null : message].filter(Boolean)),
     [`${GET_MESSAGES}Result`]: () => messages
   }
 
