@@ -1,17 +1,20 @@
-import { HIDE_SIGNUP, HIDE_MESSAGE_INPUT, HIDE_MESSAGE_LIST } from '../actions/components'
+import { HIDE_SIGNUP, HIDE_MESSAGE_INPUT, HIDE_MESSAGE_LIST, HIDE_GROUP_COMPOSITION } from '../actions/components'
+
 import { INITIALIZATION } from '../actions/misc'
 
 const initialState = {
   hideSignUp: false,
   hideMessageInput: true,
   hideMessageList: true,
-  hideGroupList: true
+  hideGroupList: true,
+  hideGroupComposition: true
 }
 
 export default (state = initialState, action = {}) => {
   const { type, payload } = action
 
   const updateStateByFunctionName = {
+    [HIDE_GROUP_COMPOSITION]: () => ({ ...state, hideGroupComposition: payload }),
     [HIDE_SIGNUP]: () => ({ ...state, hideSignUp: payload }),
     [HIDE_MESSAGE_INPUT]: () => ({ ...state, hideMessageInput: payload }),
     [HIDE_MESSAGE_LIST]: () => ({ ...state, hideMessageList: payload }),
@@ -19,6 +22,7 @@ export default (state = initialState, action = {}) => {
       const isJWTPresent = Boolean(payload.jwt)
 
       return ({
+        ...state,
         hideSignUp: isJWTPresent,
         hideMessageInput: !isJWTPresent,
         hideMessageList: !isJWTPresent,
