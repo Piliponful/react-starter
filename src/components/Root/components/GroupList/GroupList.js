@@ -1,11 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocalStorage } from '@rehooks/local-storage'
 import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
 
 import HideHOC from '../../../HideHOC'
 
-import { GET_GROUPS, SET_SELECTED_GROUP } from '../../../../srpcFunctionNames'
+import { GET_GROUPS, SET_SELECTED_GROUP, CREATE_GROUP } from '../../../../srpcFunctionNames'
+
+const NewGroupContent = ({ group }) => {
+  const [state, setState] = useState('')
+  const [jwt] = useLocalStorage('jwt')
+  const dispatch = useDispatch()
+  const dispatchSrpcCall = createDispatchSrpcCall(dispatch)
+  const createGroup = () => dispatchSrpcCall(CREATE_GROUP, { jwt, ...group, name: state })
+
+  return (
+    <>
+      <input value={state} onChange={e => setState(e.target.value)} />
+      <button onClick={createGroup}>Save</button>
+    </>
+  )
+}
 
 const GroupList = () => {
   const groups = useSelector(state => state.groups)
@@ -25,8 +40,8 @@ const GroupList = () => {
     {
       groups.map(group => (
         <span key={group.id}>
-          {group.name}
-          <button onClick={() => setSelectedGroup(group.id)}>{group.selected ? 'Unselect' : 'Select'}</button>
+          {group.name || <NewGroupContent group={group} />}
+          {group.name ? <button onClick={() => setSelectedGroup(group.id)}>{group.selected ? 'Unselect' : 'Select'}</button> : null}
         </span>
       ))
     }

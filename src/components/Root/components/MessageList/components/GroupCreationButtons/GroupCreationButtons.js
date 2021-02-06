@@ -1,19 +1,13 @@
 import React from 'react'
 
 import { useDispatch } from 'react-redux'
-import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
-import { useLocalStorage } from '@rehooks/local-storage'
 
-import { CREATE_GROUP } from '../../../../../../srpcFunctionNames'
+import { CREATE_GROUP } from '../../../../../../actions/groups'
 
 export const GroupCreationButtons = ({ messageId }) => {
-  const [jwt] = useLocalStorage('jwt')
-
   const dispatch = useDispatch()
 
-  const dispatchSrpcCall = createDispatchSrpcCall(dispatch)
-
-  const dispatchCreateGroup = content => dispatchSrpcCall(CREATE_GROUP, { jwt, messageId, content, name: 'test' })
+  const dispatchCreateGroup = content => dispatch({ type: CREATE_GROUP, payload: { group: { messageId, content } } })
 
   return (
     <span>
