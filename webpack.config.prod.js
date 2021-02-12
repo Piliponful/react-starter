@@ -66,7 +66,7 @@ module.exports = {
     rules
   },
   plugins: [
-    new HtmlWebpackPlugin({template: 'src/index.html'}),
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
     new CopyWebpackPlugin([
       // { from: 'src/app/images/favicon.ico', to: distDir }
     ]),

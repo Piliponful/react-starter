@@ -11,14 +11,12 @@ const distDir = path.resolve(__dirname, 'dist')
 const rules = [
   {
     test: /\.jsx?$/,
-    exclude: /node_modules/,
+    exclude: /node_modules\/(?!(project-x-ui)\/).*/,
     enforce: 'pre',
     use: [{
       loader: 'babel-loader',
       options: {
-        plugins: [
-          'react-refresh/babel'
-        ]
+        plugins: [require.resolve('react-refresh/babel')]
       }
     }, {
       loader: 'standard-loader',
@@ -54,9 +52,14 @@ const rules = [
     ]
   },
   {
-    test: /\.(jpe?g|png|gif|svg|ttf|ico)$/i,
+    test: /\.(jpe?g|png|gif|ttf|ico)$/i,
     use: 'file-loader'
+  },
+  {
+    test: /\.svg$/,
+    use: [{ loader: '@svgr/webpack', options: { svgoConfig: { plugins: [{ cleanupIDs: false }] } } }]
   }
+
 ]
 
 module.exports = {
@@ -70,12 +73,6 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     hot: true,
-    watchOptions: {
-      poll: true
-    },
-    historyApiFallback: true,
-    host: '0.0.0.0',
-    disableHostCheck: true,
     port: 8081,
     proxy: {
       '/api': {

@@ -37,8 +37,8 @@
     "install": "^0.12.2",
     "jwt-decode": "^2.2.0",
     "npm": "^6.14.8",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-redux": "^7.2.1",
     "react-refresh": "^0.8.3",
     "redux": "^4.0.5",
@@ -57,6 +57,8 @@
   },
   "dependencies": {
     "find-and-replace-array": "^1.0.1",
+    "lodash": "^4.17.20",
+    "project-x-ui": "^1.0.42",
     "react-select": "^3.1.1"
   }
 }
