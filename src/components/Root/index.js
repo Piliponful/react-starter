@@ -24,10 +24,13 @@ export default () => (
       </Sidebar>
       <MainScreen>
         <QuestionCardsRow title='Most answered'>
-          <MessageList />
+          <MessageList messageColumn='mostAnswered' />
         </QuestionCardsRow>
-        <QuestionCardsRow title='Most answered in last 7 days'>
-          <MessageList />
+        <QuestionCardsRow title='Unanimous'>
+          <MessageList messageColumn='unanimous' />
+        </QuestionCardsRow>
+        <QuestionCardsRow title='Latest'>
+          <MessageList messageColumn='latest' />
         </QuestionCardsRow>
       </MainScreen>
     </Body>

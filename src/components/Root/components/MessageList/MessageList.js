@@ -12,7 +12,7 @@ import { CREATE_GROUP } from '../../../../actions/groups'
 
 const { leafs: { QuestionCard } } = projectXUI
 
-const MessageList = () => {
+const MessageList = ({ messageColumn }) => {
   const messages = useSelector(state => state.messages)
 
   const [jwt] = useLocalStorage('jwt')
@@ -21,7 +21,7 @@ const MessageList = () => {
 
   const dispatch = useDispatch()
   const dispatchSrpcCall = createDispatchSrpcCall(dispatch)
-  const dispatchGetMessages = () => dispatchSrpcCall(GET_MESSAGES, { jwt })
+  const dispatchGetMessages = () => dispatchSrpcCall(GET_MESSAGES, { jwt, messageColumn })
   const dispatchCreateGroup = (messageId, content) =>
     dispatch({
       type: CREATE_GROUP, payload: { group: { messageId, content, userCount: messages.find(m => m.id === messageId).answersCount[content] } }
@@ -32,7 +32,7 @@ const MessageList = () => {
     dispatchGetMessages()
   }, [])
 
-  return <>{messages
+  return <>{(messages[messageColumn] || [])
     .map(m => <QuestionCard
       key={m.id}
       name={m.content}

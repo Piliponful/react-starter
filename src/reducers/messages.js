@@ -1,10 +1,10 @@
 import { SAVE_MESSAGE, GET_MESSAGES } from '../srpcFunctionNames'
 
-const initialState = []
+const initialState = {}
 
 export default (state = initialState, action = {}) => {
   const { type: functionName, payload: returnValue = {} } = action
-  const { message, messages } = returnValue
+  const { message, messages, messageColumn } = returnValue
 
   const updateStateByFunctionName = {
     [`${SAVE_MESSAGE}Result`]: () => (
@@ -20,7 +20,7 @@ export default (state = initialState, action = {}) => {
         )
         : [...state, message]
     ).filter(Boolean),
-    [`${GET_MESSAGES}Result`]: () => messages
+    [`${GET_MESSAGES}Result`]: () => ({ ...state, [messageColumn]: messages })
   }
 
   const actionHandler = updateStateByFunctionName[functionName] || (() => state)
