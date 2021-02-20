@@ -18,16 +18,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
-    "@babel/plugin-transform-regenerator": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.17",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.2",
     "@rehooks/local-storage": "^2.4.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.1.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "classnames": "^2.2.5",
     "config": "^3.3.2",
     "copy-webpack-plugin": "^6.2.1",
@@ -56,6 +53,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.12.18",
     "find-and-replace-array": "^1.0.1",
     "lodash": "^4.17.20",
     "project-x-ui": "^1.0.42",
