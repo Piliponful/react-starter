@@ -1,4 +1,4 @@
-import { SAVE_MESSAGE, GET_MESSAGES } from '../srpcFunctionNames'
+import { SAVE_MESSAGE, GET_MESSAGES, SET_SELECTED_GROUP } from '../srpcFunctionNames'
 
 const initialState = {}
 
@@ -20,7 +20,8 @@ export default (state = initialState, action = {}) => {
         )
         : [...state, message]
     ).filter(Boolean),
-    [`${GET_MESSAGES}Result`]: () => ({ ...state, [messageColumn]: messages })
+    [`${GET_MESSAGES}Result`]: () => ({ ...state, [messageColumn]: messages }),
+    [`${SET_SELECTED_GROUP}Result`]: () => messages
   }
 
   const actionHandler = updateStateByFunctionName[functionName] || (() => state)
