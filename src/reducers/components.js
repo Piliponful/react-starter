@@ -1,12 +1,8 @@
-import { HIDE_SIGNUP, HIDE_MESSAGE_INPUT, HIDE_MESSAGE_LIST, HIDE_GROUP_COMPOSITION } from '../actions/components'
-
-import { INITIALIZATION } from '../actions/misc'
+import { INITIALIZATION, HIDE_GROUP_COMPOSITION } from '../actions/components'
 
 const initialState = {
-  hideSignUp: false,
-  hideMessageInput: true,
-  hideMessageList: true,
-  hideGroupList: true,
+  hideAuthorizationScreen: false,
+  hideAuthorizedScreen: true,
   hideGroupComposition: true
 }
 
@@ -14,21 +10,16 @@ export default (state = initialState, action = {}) => {
   const { type, payload } = action
 
   const updateStateByFunctionName = {
-    [HIDE_GROUP_COMPOSITION]: () => ({ ...state, hideGroupComposition: payload }),
-    [HIDE_SIGNUP]: () => ({ ...state, hideSignUp: payload }),
-    [HIDE_MESSAGE_INPUT]: () => ({ ...state, hideMessageInput: payload }),
-    [HIDE_MESSAGE_LIST]: () => ({ ...state, hideMessageList: payload }),
     [INITIALIZATION]: () => {
       const isJWTPresent = Boolean(payload.jwt)
 
       return ({
         ...state,
-        hideSignUp: isJWTPresent,
-        hideMessageInput: !isJWTPresent,
-        hideMessageList: !isJWTPresent,
-        hideGroupList: !isJWTPresent
+        hideAuthorizedScreen: !isJWTPresent,
+        hideAuthorizationScreen: isJWTPresent
       })
-    }
+    },
+    [HIDE_GROUP_COMPOSITION]: () => ({ ...state, showGroupComposition: payload })
   }
 
   const actionHandler = updateStateByFunctionName[type] || (() => state)

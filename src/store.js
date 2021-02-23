@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import reducer from './reducers'
 
-import { INITIALIZATION } from './actions/misc'
+import { INITIALIZATION } from './actions/components'
 
 const srpcMiddleware = createSrpcMiddleware('/api')
 

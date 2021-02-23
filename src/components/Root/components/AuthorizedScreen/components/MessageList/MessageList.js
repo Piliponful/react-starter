@@ -5,14 +5,12 @@ import { useLocalStorage } from '@rehooks/local-storage'
 import decodeJwt from 'jwt-decode'
 import projectXUI from 'project-x-ui'
 
-import HideHOC from '../../../HideHOC'
-
-import { GET_MESSAGES, SAVE_MESSAGE } from '../../../../srpcFunctionNames'
-import { CREATE_GROUP } from '../../../../actions/groups'
+import { GET_MESSAGES, SAVE_MESSAGE } from '../../../../../../srpcFunctionNames'
+import { CREATE_GROUP } from '../../../../../../actions/groups'
 
 const { leafs: { QuestionCard } } = projectXUI
 
-const MessageList = ({ messageColumn }) => {
+export const MessageList = ({ messageColumn }) => {
   const messages = useSelector(state => state.messages)
 
   const [jwt] = useLocalStorage('jwt')
@@ -44,5 +42,3 @@ const MessageList = ({ messageColumn }) => {
     />)
   }</>
 }
-
-export default HideHOC('hideMessageList')(MessageList)

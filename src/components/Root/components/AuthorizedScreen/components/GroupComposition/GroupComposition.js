@@ -2,9 +2,9 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import projectXUI from 'project-x-ui'
 
-import HideHOC from '../../../HideHOC'
+import HideHOC from '../../../../../HideHOC'
 
-import { SET_CIRCLE_PARTS } from '../../../../actions/groups'
+import { SET_CIRCLE_PARTS } from '../../../../../../actions/groups'
 
 const { leafs: { Circles } } = projectXUI
 
@@ -16,6 +16,8 @@ export const GroupComposition = () => {
   const setCircleParts = value => {
     dispatch({ type: SET_CIRCLE_PARTS, payload: { selectedCircleParts: value } })
   }
+
+  console.log('here')
 
   return <Circles
     selectedCircleParts={selectedCircleParts}

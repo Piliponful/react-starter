@@ -5,11 +5,9 @@ import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
 import projectXUI from 'project-x-ui'
 import { isEqual } from 'lodash'
 
-import HideHOC from '../../../HideHOC'
-
-import { GET_GROUPS, SET_SELECTED_GROUP, CREATE_GROUP, CREATE_COMPOSITE_GROUP } from '../../../../srpcFunctionNames'
-import { SELECT_FOR_COMBINATION } from '../../../../actions/groups'
-import { HIDE_GROUP_COMPOSITION } from '../../../../actions/components'
+import { GET_GROUPS, SET_SELECTED_GROUP, CREATE_GROUP, CREATE_COMPOSITE_GROUP } from '../../../../../../srpcFunctionNames'
+import { SELECT_FOR_COMBINATION } from '../../../../../../actions/groups'
+import { HIDE_GROUP_COMPOSITION } from '../../../../../../actions/components'
 
 const { leafs: { GroupCard: GroupCardUI } } = projectXUI
 
@@ -67,7 +65,7 @@ const GroupCard = ({ group }) => {
   />
 }
 
-const GroupList = () => {
+export const GroupList = () => {
   const [jwt] = useLocalStorage('jwt')
 
   const dispatch = useDispatch()
@@ -93,5 +91,3 @@ const GroupList = () => {
 
   return groupsToDisplay.map(g => <GroupCard key={g.id || 'new'} group={g} />)
 }
-
-export default HideHOC('hideGroupList')(GroupList)
