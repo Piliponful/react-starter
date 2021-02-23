@@ -7,6 +7,7 @@ import MessageInput from './components/MessageInput'
 import MessageList from './components/MessageList'
 import GroupList from './components/GroupList'
 import GroupComposition from './components/GroupComposition'
+import ActionsPanel from './components/ActionsPanel'
 
 const { shallow: { Sidebar, MainScreen, QuestionCardsRow, GroupsContainer } } = projectXUI
 
@@ -18,6 +19,7 @@ const AuthorizedScreen = () => (
         <GroupList />
       </GroupsContainer>
       <MessageInput />
+      <ActionsPanel />
     </Sidebar>
     <MainScreen>
       <QuestionCardsRow title='Most answered'>

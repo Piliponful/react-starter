@@ -56,7 +56,7 @@
     "@babel/runtime": "^7.12.18",
     "find-and-replace-array": "^1.0.1",
     "lodash": "^4.17.20",
-    "project-x-ui": "^1.0.48",
+    "project-x-ui": "^1.0.49",
     "react-select": "^3.1.1"
   }
 }
