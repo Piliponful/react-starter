@@ -1,21 +1,17 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
 import { useLocalStorage } from '@rehooks/local-storage'
 import projectXUI from 'project-x-ui'
 
-import { SAVE_MESSAGE } from '../../../../../../srpcFunctionNames'
+import { useSrpcApi } from '../../../../../../hooks/useSrpcApi'
 
 const { leafs: { NewQuestion } } = projectXUI
 
 export const MessageInput = () => {
   const [jwt] = useLocalStorage('jwt')
 
-  const dispatch = useDispatch()
+  const srpcApi = useSrpcApi()
 
-  const dispatchSrpcCall = createDispatchSrpcCall(dispatch)
+  const saveQuestion = content => srpcApi.saveMessage({ jwt, content })
 
-  const dispatchSaveMessage = content => dispatchSrpcCall(SAVE_MESSAGE, { jwt, content })
-
-  return <NewQuestion saveQuestion={dispatchSaveMessage} />
+  return <NewQuestion saveQuestion={saveQuestion} />
 }

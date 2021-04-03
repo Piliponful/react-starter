@@ -1,7 +1,6 @@
 import React from 'react'
 import projectXUI from 'project-x-ui'
-
-import HideHOC from '../../../HideHOC'
+import { useLocalStorage } from '@rehooks/local-storage'
 
 import MessageInput from './components/MessageInput'
 import MessageList from './components/MessageList'
@@ -11,28 +10,34 @@ import ActionsPanel from './components/ActionsPanel'
 
 const { shallow: { Sidebar, MainScreen, QuestionCardsRow, GroupsContainer } } = projectXUI
 
-const AuthorizedScreen = () => (
-  <>
-    <Sidebar>
-      <GroupComposition />
-      <GroupsContainer>
-        <GroupList />
-      </GroupsContainer>
-      <MessageInput />
-      <ActionsPanel />
-    </Sidebar>
-    <MainScreen>
-      <QuestionCardsRow title='Most answered'>
-        <MessageList messageColumn='mostAnswered' />
-      </QuestionCardsRow>
-      <QuestionCardsRow title='Unanimous'>
-        <MessageList messageColumn='unanimous' />
-      </QuestionCardsRow>
-      <QuestionCardsRow title='Latest'>
-        <MessageList messageColumn='latest' />
-      </QuestionCardsRow>
-    </MainScreen>
-  </>
-)
+export const AuthorizedScreen = () => {
+  const [jwt] = useLocalStorage('jwt')
 
-export default HideHOC('hideAuthorizedScreen')(AuthorizedScreen)
+  if (!jwt) {
+    return null
+  }
+
+  return (
+    <>
+      <Sidebar>
+        <GroupComposition />
+        <GroupsContainer>
+          <GroupList />
+        </GroupsContainer>
+        <MessageInput />
+        <ActionsPanel />
+      </Sidebar>
+      <MainScreen>
+        <QuestionCardsRow title='Most answered'>
+          <MessageList messageColumn='mostAnswered' />
+        </QuestionCardsRow>
+        <QuestionCardsRow title='Unanimous'>
+          <MessageList messageColumn='unanimous' />
+        </QuestionCardsRow>
+        <QuestionCardsRow title='Latest'>
+          <MessageList messageColumn='latest' />
+        </QuestionCardsRow>
+      </MainScreen>
+    </>
+  )
+}

@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-pipeline-operator": "^7.12.13",
     "@babel/plugin-transform-runtime": "^7.12.17",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
@@ -36,7 +37,6 @@
     "react-refresh": "^0.8.3",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-srpc": "^2.0.3",
     "resolve-url-loader": "^3.1.2",
     "rupture": "^0.7.1",
     "standard": "^12.0.1",
@@ -52,7 +52,7 @@
     "@babel/runtime": "^7.12.18",
     "find-and-replace-array": "^1.0.1",
     "lodash": "^4.17.20",
-    "project-x-ui": "^1.0.49",
+    "project-x-ui": "^1.0.50",
     "react-select": "^3.1.1"
   }
 }

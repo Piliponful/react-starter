@@ -1,45 +1,35 @@
 import React from 'react'
 import projectXUI from 'project-x-ui'
-import { useDispatch } from 'react-redux'
-import { dispatchSrpcCall as createDispatchSrpcCall } from 'redux-srpc'
 import { useLocalStorage } from '@rehooks/local-storage'
 
-import HideHOC from '../../../HideHOC'
-
-import { INITIALIZATION } from '../../../../actions/components'
-import { CREATE_USER, VERIFY_USER, GET_USER_TOKEN } from '../../../../srpcFunctionNames'
+import { useSrpcApi } from '../../../../hooks/useSrpcApi'
 
 const { leafs: { Authorization } } = projectXUI
 
-const AuthorizationScreen = () => {
+export const AuthorizationScreen = () => {
   const [jwt, setJwt] = useLocalStorage('jwt')
 
-  const dispatch = useDispatch()
+  if (jwt) {
+    return null
+  }
 
-  const dispatchSrpcCall = createDispatchSrpcCall(dispatch)
+  const srpcApi = useSrpcApi()
 
   const createUser = async ({ username, password, phoneNumber }) => {
-    const { jwt } = await dispatchSrpcCall(CREATE_USER, { username, password, phoneNumber })
+    const { jwt } = await srpcApi.createUser({ username, password, phoneNumber })
 
     setJwt(jwt)
   }
 
-  const verifyUser = async ({ verificationCode }) => {
-    await dispatchSrpcCall(VERIFY_USER, { jwt, verificationCode })
-
-    dispatch({ type: INITIALIZATION, payload: { jwt } })
-  }
+  const verifyUser = ({ verificationCode }) => srpcApi.verifyUser({ jwt, verificationCode })
 
   const getUserToken = async ({ username, password }) => {
-    const { jwt } = await dispatchSrpcCall(GET_USER_TOKEN, { username, password })
-    setJwt(jwt)
+    const { jwt } = await srpcApi.getUserToken({ username, password })
 
-    dispatch({ type: INITIALIZATION, payload: { jwt } })
+    setJwt(jwt)
   }
 
   return (
     <Authorization verifyUser={verifyUser} getUserToken={getUserToken} createUser={createUser} />
   )
 }
-
-export default HideHOC('hideAuthorizationScreen')(AuthorizationScreen)

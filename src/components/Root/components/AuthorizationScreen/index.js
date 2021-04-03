@@ -1,3 +1,3 @@
-import AuthorizationScreen from './AuthorizationScreen'
+import { AuthorizationScreen } from './AuthorizationScreen'
 
 export default AuthorizationScreen

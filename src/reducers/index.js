@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux'
 
-import messages from './messages'
-import groups from './groups'
-
-import components from './components'
+import compositionType from './compositionType'
+import newGroup from './newGroup'
+import selectedGroupId from './selectedGroupId'
+import selectedForCompositionGroupIds from './selectedForCompositionGroupIds'
 
 const reducer = combineReducers({
-  messages,
-  groups,
-
-  components
+  compositionType,
+  newGroup,
+  selectedGroupId,
+  selectedForCompositionGroupIds
 })
 
 export default reducer
