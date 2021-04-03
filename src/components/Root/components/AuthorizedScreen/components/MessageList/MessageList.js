@@ -13,6 +13,7 @@ const { leafs: { QuestionCard } } = projectXUI
 export const MessageList = ({ messageColumn }) => {
   const [messages, setMessages] = useState([])
   const selectedGroupId = useSelector(state => state.selectedGroupId)
+  const selectedForComposition = useSelector(state => state.selectedForCompositionGroupIds)
   const dispatch = useDispatch()
 
   const [jwt] = useLocalStorage('jwt')
@@ -26,6 +27,10 @@ export const MessageList = ({ messageColumn }) => {
   }, [selectedGroupId])
 
   const createGroup = (messageId, content) => {
+    if (selectedForComposition.length !== 0) {
+      return
+    }
+
     const newGroup = {
       messageId,
       content,
