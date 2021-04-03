@@ -60,7 +60,7 @@ export const GroupItem = ({ group }) => {
         ? selectedForComposition.filter(i => i.id !== group.id)
         : [...selectedForComposition, newGroup]
 
-    if (selectedForComposition.length === 1) {
+    if (newSelectedForCompositionGroupIds.length === 2) {
       dispatch({ type: SET_NEW_GROUP, payload: { userCount: 0, color: '#92278f' } })
     }
 
