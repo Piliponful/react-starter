@@ -42,15 +42,21 @@ export const MessageList = ({ messageColumn }) => {
     srpcApi.saveMessage({ jwt, content, parentMessageId: messageId })
   }
 
-  return <>{messages
-    .map(m => <QuestionCard
-      key={m.id}
-      name={m.content}
-      answersCount={m.answersCount}
-      currentUserAnswer={m.currentUserAnswer}
-      respond={content => respond(m.id, content)}
-      createNewGroup={content => createGroup(m.id, content)}
-      yourOwnQuestion={userId === m.userId}
-    />)
-  }</>
+  return (
+    <>
+      {messages.map(m =>
+        (
+          <QuestionCard
+            key={m.id}
+            name={m.content}
+            answersCount={m.answersCount}
+            currentUserAnswer={m.currentUserAnswer}
+            respond={content => respond(m.id, content)}
+            createNewGroup={content => createGroup(m.id, content)}
+            yourOwnQuestion={userId === m.userId}
+          />
+        )
+      )}
+    </>
+  )
 }

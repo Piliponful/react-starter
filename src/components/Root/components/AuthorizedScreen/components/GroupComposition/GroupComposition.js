@@ -30,10 +30,12 @@ export const GroupComposition = () => {
   const setCircleParts = value =>
     dispatch({ type: SET_COMPOSITION_TYPE, payload: circlePartsToCompositionType(value) })
 
-  return <Circles
-    selectedGroups={selectedForComposition}
-    onSelect={setCircleParts}
-  />
+  return (
+    <Circles
+      selectedGroups={selectedForComposition}
+      onSelect={setCircleParts}
+    />
+  )
 }
 
 export default GroupComposition

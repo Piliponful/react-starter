@@ -75,11 +75,13 @@ export const GroupItem = ({ group }) => {
     dispatch({ type: SET_SELECTED_GROUP_ID, payload: selectedGroupId === group.id ? null : group.id })
   }
 
-  return <GroupCardUI
-    readyToSave={selectedForComposition.length ? compositionType : true}
-    save={createGroup}
-    toggleSelection={selectedForComposition.find(i => i.id === group.id) ? combine : toggleGroupSelection}
-    combine={combine}
-    {...group}
-  />
+  return (
+    <GroupCardUI
+      readyToSave={selectedForComposition.length ? compositionType : true}
+      save={createGroup}
+      toggleSelection={selectedForComposition.find(i => i.id === group.id) ? combine : toggleGroupSelection}
+      combine={combine}
+      {...group}
+    />
+  )
 }

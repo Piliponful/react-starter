@@ -44,10 +44,10 @@ export const GroupList = () => {
     ? [...selectedForComposition.map(g => ({ ...g, ...groups.find(i => i.id === g.id) })), newGroup]
     : selectedForComposition.length === 1
       ? groups
-        .map(g => selectedForComposition.find(i => i.id === g.id)
-          ? ({ ...g, color: selectedForComposition.find(i => i.id === g.id).color })
-          : g
-        )
+          .map(g => selectedForComposition.find(i => i.id === g.id)
+            ? ({ ...g, color: selectedForComposition.find(i => i.id === g.id).color })
+            : g
+          )
       : [newGroup, ...groups.map(g => ({ ...g, selected: g.id === selectedGroupId }))]).filter(Boolean)
 
   return groupsToDisplay.map(g => <GroupItem key={g.id || 'new'} group={g} />)
