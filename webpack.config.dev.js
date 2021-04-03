@@ -2,8 +2,6 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
-const webpack = require('webpack')
-const config = require('config')
 
 const srcDir = path.resolve(__dirname, 'src')
 const distDir = path.resolve(__dirname, 'dist')
@@ -88,9 +86,6 @@ module.exports = {
     // new CopyWebpackPlugin([
     //   { from: 'src/assets/images/favicon.ico', to: distDir }
     // ]),
-    new webpack.DefinePlugin({
-      'CONFIG': JSON.stringify(config)
-    }),
     new ReactRefreshWebpackPlugin()
   ]
 }

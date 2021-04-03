@@ -11,9 +11,6 @@
     "lint": "standard src/*"
   },
   "standard": {
-    "globals": [
-      "CONFIG"
-    ],
     "parser": "babel-eslint"
   },
   "devDependencies": {
@@ -26,7 +23,6 @@
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.1.0",
     "classnames": "^2.2.5",
-    "config": "^3.3.2",
     "copy-webpack-plugin": "^6.2.1",
     "css-loader": "^5.0.0",
     "file-loader": "^6.1.1",
