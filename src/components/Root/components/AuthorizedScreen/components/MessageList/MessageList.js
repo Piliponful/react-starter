@@ -40,6 +40,7 @@ export const MessageList = ({ messageColumn }) => {
 
   const respond = (messageId, content) => {
     srpcApi.saveMessage({ jwt, content, parentMessageId: messageId })
+    setMessages(messages.map(m => m.id === messageId ? ({ ...m, currentUserAnswer: content }) : m))
   }
 
   return (
