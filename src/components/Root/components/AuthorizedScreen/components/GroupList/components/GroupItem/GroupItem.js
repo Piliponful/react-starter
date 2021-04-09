@@ -41,10 +41,7 @@ export const GroupItem = ({ group }) => {
     })
 
     dispatch({ type: SET_NEW_GROUP, payload: { ...newGroup, created: true } })
-    dispatch({
-      type: SET_SELECTED_FOR_COMPOSITION_GROUP_IDS,
-      payload: []
-    })
+    dispatch({ type: SET_SELECTED_FOR_COMPOSITION_GROUP_IDS, payload: [] })
   }
 
   const createGroup = selectedForComposition.length === 2 ? createCompositeGroup : createSimpleGroup
@@ -75,12 +72,17 @@ export const GroupItem = ({ group }) => {
     dispatch({ type: SET_SELECTED_GROUP_ID, payload: selectedGroupId === group.id ? null : group.id })
   }
 
+  const cancel = () => {
+    dispatch({ type: SET_NEW_GROUP, payload: null })
+  }
+
   return (
     <GroupCardUI
       readyToSave={selectedForComposition.length ? compositionType : true}
       save={createGroup}
       toggleSelection={selectedForComposition.find(i => i.id === group.id) ? combine : toggleGroupSelection}
       combine={combine}
+      cancel={cancel}
       {...group}
     />
   )
