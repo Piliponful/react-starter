@@ -1,11 +1,9 @@
-FROM node:10.0.0
+FROM node:14.16.1
 
 WORKDIR /root/app/client
 
-RUN apt-get update -y && apt-get install 'libpng*' -y
-
 COPY package*.json ./
-RUN npm i
+RUN npm ci
 
 COPY . ./
 
