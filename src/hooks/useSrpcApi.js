@@ -15,8 +15,7 @@ export const useSrpcApi = () => {
   const callSrpc = (method, params) => {
     return window.fetch(process.env.API_URL, {
       method: 'post',
-      body: JSON.stringify({ method, params }),
-      headers: { 'Content-Type': 'application/json' }
+      body: JSON.stringify({ method, params })
     })
       .then(response => {
         const result = response.json()
