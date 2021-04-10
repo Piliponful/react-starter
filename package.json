@@ -34,7 +34,7 @@
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "npm": "^7.8.0",
-    "project-x-ui": "^1.0.63",
+    "project-x-ui": "^1.0.65",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocalStorage } from '@rehooks/local-storage'
 import projectXUI from 'project-x-ui'
@@ -46,7 +46,7 @@ export const GroupItem = ({ group }) => {
 
   const createGroup = selectedForComposition.length === 2 ? createCompositeGroup : createSimpleGroup
 
-  const combine = () => {
+  const combine = async () => {
     const newGroup = {
       id: group.id,
       color: selectedForComposition.length ? (selectedForComposition[0].color === colors[1] ? colors[0] : colors[1]) : colors[0]
@@ -75,6 +75,24 @@ export const GroupItem = ({ group }) => {
   const cancel = () => {
     dispatch({ type: SET_NEW_GROUP, payload: null })
   }
+
+  useEffect(() => {
+    if (newGroup && (group.id === newGroup.id)) {
+      if (compositionType) {
+        srpcApi.getCompositeGroupUserCount({
+          jwt,
+          groupIdLeft: selectedForComposition[0].id,
+          groupIdRight: selectedForComposition[1].id,
+          compositionType
+        })
+          .then(({ userCount }) => {
+            dispatch({ type: SET_NEW_GROUP, payload: { userCount, color: '#92278f' } })
+          })
+      } else {
+        dispatch({ type: SET_NEW_GROUP, payload: { userCount: 0, color: '#92278f' } })
+      }
+    }
+  }, [compositionType])
 
   return (
     <GroupCardUI

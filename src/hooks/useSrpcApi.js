@@ -7,7 +7,8 @@ const srpcFunctionNames = [
   'getGroups',
   'setSelectedGroup',
   'createCompositeGroup',
-  'getUserToken'
+  'getUserToken',
+  'getCompositeGroupUserCount'
 ]
 
 export const useSrpcApi = () => {
