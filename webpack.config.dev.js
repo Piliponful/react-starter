@@ -1,7 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
 
 const srcDir = path.resolve(__dirname, 'src')
 const distDir = path.resolve(__dirname, 'dist')
@@ -83,9 +83,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
-    // new CopyWebpackPlugin([
-    //   { from: 'src/assets/images/favicon.ico', to: distDir }
-    // ]),
-    new ReactRefreshWebpackPlugin()
+    new ReactRefreshWebpackPlugin(),
+    new webpack.EnvironmentPlugin(['API_URL'])
   ]
 }

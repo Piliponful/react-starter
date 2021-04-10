@@ -12,7 +12,7 @@ const srpcFunctionNames = [
 
 export const useSrpcApi = () => {
   const callSrpc = (method, params) => {
-    return window.fetch('/api', {
+    return window.fetch(process.env.API_URL, {
       method: 'post',
       body: JSON.stringify({ method, params }),
       headers: { 'Content-Type': 'application/json' }

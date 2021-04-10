@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
 
 const srcDir = path.resolve(__dirname, 'src')
 const distDir = path.resolve(__dirname, 'dist')
@@ -65,8 +66,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
-    new CopyWebpackPlugin([
-      // { from: 'src/app/images/favicon.ico', to: distDir }
-    ])
+    new CopyWebpackPlugin({
+      patterns: [{ from: './favicon.ico', to: distDir }]
+    }),
+    new webpack.EnvironmentPlugin(['API_URL'])
   ]
 }

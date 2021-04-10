@@ -6,7 +6,7 @@
   "author": "Maksim Pylypenko/piliponful",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack serve --config webpack.config.dev.js",
+    "dev": "API_URL=api/ webpack serve --config webpack.config.dev.js",
     "build": "webpack-cli --config webpack.config.prod.js",
     "lint": "standard src/*"
   },
