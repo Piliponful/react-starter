@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 
 const srcDir = path.resolve(__dirname, 'src')
+const distDir = path.resolve(__dirname, './dist')
 
 const rules = [
   {
@@ -54,7 +55,7 @@ module.exports = {
     `${srcDir}/index.js`
   ],
   output: {
-    path: '/dist',
+    path: distDir,
     filename: 'bundle.js',
     publicPath: '/'
   },
@@ -66,7 +67,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
     new CopyWebpackPlugin({
-      patterns: [{ from: './favicon.ico', to: '/dist' }]
+      patterns: [{ from: './favicon.ico', to: distDir }]
     }),
     new webpack.EnvironmentPlugin(['API_URL'])
   ]
