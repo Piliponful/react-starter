@@ -68,6 +68,17 @@ export const GroupItem = ({ group }) => {
   }
 
   const toggleGroupSelection = () => {
+    if (group.id === undefined) {
+      dispatch({
+        type: SET_NEW_GROUP,
+        payload: null
+      })
+      dispatch({
+        type: SET_SELECTED_FOR_COMPOSITION_GROUP_IDS,
+        payload: []
+      })
+      return
+    }
     srpcApi.setSelectedGroup({ jwt, groupId: group.id })
     dispatch({ type: SET_SELECTED_GROUP_ID, payload: selectedGroupId === group.id ? null : group.id })
   }
