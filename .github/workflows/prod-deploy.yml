@@ -1,0 +1,27 @@
+name: Remote update execution
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  build:
+    name: Build And Deploy To Prod
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: 34.89.212.12
+          username: pilip
+          key: ${{ secrets.SERVER_KEY }}
+          script: |
+            cd project-x
+            source ~/.nvm/nvm.sh
+            source ~/.bashrc
+            nvm use 22.14.0
+            git checkout -- .
+            git checkout main
+            git pull origin main
+            pnpm i
+            pnpm run build
+            npx pm2 restart 3

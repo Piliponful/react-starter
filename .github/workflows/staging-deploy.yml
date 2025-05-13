@@ -1,0 +1,27 @@
+name: Remote update execution
+on:
+  push:
+    branches: [ "staging" ]
+
+jobs:
+  build:
+    name: Build And Deploy To Staging
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: 35.242.212.177
+        username: piliponful-work
+        key: ${{ secrets.SERVER_KEY }}
+        script: |
+            cd staging.poll.cc
+            source ~/.nvm/nvm.sh
+            ls ~
+            nvm use 18.18.0
+            git checkout -- .
+            git checkout staging
+            git pull origin staging
+            npm i
+            npm run build
+            pm2 restart 7
